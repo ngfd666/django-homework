@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+
+    <h2>Ваши заметки</h2>
+    <form action="/note/" method="post">
+        {% csrf_token %}
+        {{ note_form }}
+        <input type="submit" value="Submit">
+        {% for note in notes %}
+            <div class="note">
+                <h3>
+                    {{ note.title }}
+                </h3>
+                <p>
+                    {{ note.text }}
+                </p>
+                <a href="/note/delete_note/?id={{ note.id }}">Удалить заметку</a>
+            </div>
+
+        {% endfor %}
+
+    </form>
+{% endblock %}

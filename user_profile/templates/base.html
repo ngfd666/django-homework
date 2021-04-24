@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+</head>
+<body>
+
+<header>
+    <div id="header" align="right">
+        <h1 class="logo">Notes App</h1>
+    </div>
+    <div align="right">
+        {% if request.user.is_authenticated  %}
+            <a href="/logout">Выйти</a>
+            <h1> Добро пожаловать, {{user.username}} </h1>
+        {% else %}
+            <a href="/register">Зарегистрироваться</a>
+            <a href="/login">Войти</a>
+        {% endif %}
+    </div>
+</header>
+
+
+<div id="content" align="center">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
